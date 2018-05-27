@@ -69,7 +69,13 @@ There is an 'all' resource with list all resources (as one would expect from a r
 ```
 $ kubectl get all
 ```
-As you can see there are no pods currently running on minikube. Only a special service called kubernetes (TODO: what is this exactly?).
+As you can see there are no pods currently running on minikube. Only a special service called kubernetes. This is the kubernetes API that is exposed and kubectl uses it to issue commands to the cluster.
+
+I hear you think right now "But where is the master running?". You are correct... it is running but it is hidden from us by a namespace. 
+```
+$ kubectl get namespaces
+```
+The default namespace is the default namespace and all the master resources are running under kube-system. (Side note: The kube-public namespace is (was?) used when bootstrapping the cluster by kubeadm).
 
 Lets install an example application called 'echoserver'.
 ```
@@ -104,14 +110,15 @@ The later two output a lot of details (the specifications or specs in short) abo
 If you want to see the current state of a resource (for troubleshooting purposes), you can use the describe command.
 You can get the details as follows:
 ```
-kubectl describe <resource>/<name> 
---or--
-kubectl describe <resource> <name>
+$ kubectl describe <resource>/<name> 
 ```
-Use kubectl to get the pods names (currently only one available) and use it 
+or
 ```
+$ kubectl describe <resource> <name>
+```
+Leaving out the name will list all resources.
 
-```
+Use kubectl to get the pods names (currently only one available) and use it to describe that specific pod.
 
 ### explain command
 
@@ -121,6 +128,24 @@ $ kubectl explain pods
 ```
 Try a few others as well (remember 'kubectl get' lists all the available resources).
 
+### expose command
+
+So we have deployed our echoserver but how do we connect to it? This can be done with the expose command. The expose command will create a service for it so it is reachable. 
+
+
+
+
+
+
+
+
+
+
+
+### 
+
+
+
 ### edit command
 
-With edit you can make changes to resources. 
+With edit you can make changes to resources. Lets say we want to update the echoservice to version 1.4.
