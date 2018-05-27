@@ -28,6 +28,7 @@ See you thursday!
 
 Kubernetes URL: 
 * https://kubernetes.io/
+
 Minikube URL: 
 * https://github.com/kubernetes/minikube
 * https://kubernetes.io/docs/getting-started-guides/minikube/
