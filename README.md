@@ -77,7 +77,12 @@ $ kubectl get namespaces
 ```
 The default namespace is the default namespace and all the master resources are running under kube-system. (Side note: The kube-public namespace is (was?) used when bootstrapping the cluster by kubeadm).
 
-Lets install an example application called 'echoserver'.
+To see what is hidden behind a namespace just pass it along your command:
+```
+$ kubectl get all --namespace kube-system
+```
+
+Not lets install an example application called 'echoserver'.
 ```
 $ kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.3 --port=8080
 ```
@@ -87,7 +92,7 @@ Run kubectl get all again and see what it did exactly.
 ```
 $ kubectl get all
 ```
-As you can see it did not just create a pod as you might have expected but it als created a deployment and replicaset.
+As you can see it created a deployment, replica set and a pod. To be more specific: the deployment created the replica set and the replica set created the pod. You can see this pattern in the 'Controlled By:' field in the get of these resources.
 
 To view only a single type of resource we can pass it as a parameter to the get command. As you may have noticed when listing all the resources there are also aliases for certain resources. If for example we just want to see the pods try the following 3 ways:
 ```
@@ -130,19 +135,37 @@ Try a few others as well (remember 'kubectl get' lists all the available resourc
 
 ### expose command
 
-So we have deployed our echoserver but how do we connect to it? This can be done with the expose command. The expose command will create a service for it so it is reachable. 
+So we have deployed our echoserver but how do we connect to it? This can be done with the expose command. 
+```
+$ kubectl expose deployment hello-minikube --type=NodePort
+```
+The expose command created a service for the echoserver so it is reachable. 
+
+There are 4 types of exposure possible: 
+* ClusterIP: service IP is only accessable from within the cluster,
+* NodePort: the resources are avaible on an public IP + port number,
+* LoadBalancer: the resources are available by an external load balancer,
+* ExternalName: see: https://akomljen.com/kubernetes-tips-part-1/
+
+On minikube we need can issue the following command to access the service directly in the browser:
+```
+minikube service hello-minikube
+```
+Passing '--url' as extra parameter we can retrieve only the URL.
 
 
 
 
+### logs command
+
+Logs can be viewed with this command. 
+```
+$ kubectl logs deployment/hello-minikube
+```
+You can also use '--follow' to see a real time stream of the logs and use a '--tail x' to see the last x lines of the log.
 
 
-
-
-
-
-
-### 
+#146
 
 
 
