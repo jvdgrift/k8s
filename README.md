@@ -54,7 +54,7 @@ You see there are a lot of commands we can pass to kubectl.
 Not all of them will be covered in this workshop.
 I hope to give you a good start understanding of the basics so you can explore the others in your own time.
 
-### Get command
+### get command
 
 Lets start with the get command.
 
@@ -97,6 +97,30 @@ $ kubectl get pods -o wide
 $ kubectl get pods -o yaml
 $ kubectl get pods -o json
 ```
-The later two output a lot of details about the specific resource. Ignore it or have a look. We'll get to the details later on...
+The later two output a lot of details (the specifications or specs in short) about the resource. Ignore it or have a look. We'll get to the details later on...
 
+### describe command
 
+If you want to see the current state of a resource (for troubleshooting purposes), you can use the describe command.
+You can get the details as follows:
+```
+kubectl describe <resource>/<name> 
+--or--
+kubectl describe <resource> <name>
+```
+Use kubectl to get the pods names (currently only one available) and use it 
+```
+
+```
+
+### explain command
+
+It explains the resource... try it out for the pod.
+```
+$ kubectl explain pods
+```
+Try a few others as well (remember 'kubectl get' lists all the available resources).
+
+### edit command
+
+With edit you can make changes to resources. 
