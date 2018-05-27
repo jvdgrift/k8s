@@ -1,16 +1,14 @@
-# k8s
 
-
-
+# kubernetes workshop (k8s)
 
 This workshop will use a localhost kubernetes environment called 'minikube', an ideal starting point in getting to know kubernetes.
 
 MacOS:
 Install the following (using brew):
-brew cask install docker
-brew install kubectl
-brew cask install virtualbox
-brew cask install minikube
+> brew cask install docker
+> brew install kubectl
+> brew cask install virtualbox
+> brew cask install minikube
 
 Linux/Windows:
 
