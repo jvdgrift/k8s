@@ -5,38 +5,48 @@ This workshop will use a localhost kubernetes environment called 'minikube', an 
 
 MacOS:
 Install the following (using brew):
-> brew cask install docker
-> brew install kubectl
-> brew cask install virtualbox
-> brew cask install minikube
-
+```
+$ brew cask install docker
+$ brew install kubectl
+$ brew cask install virtualbox
+$ brew cask install minikube
+```
 Linux/Windows:
 
 
 After install run minikube to download an image:
-minikube start
-
+```
+$ minikube start
+```
 After download has finished:
-minikube stop
-
+```
+$ minikube stop
+```
 See you thursday!
 
 
-Kubernetes URL: https://kubernetes.io/
-Minikube URL: https://github.com/kubernetes/minikube
-              https://kubernetes.io/docs/getting-started-guides/minikube/
+Kubernetes URL: 
+   https://kubernetes.io/
+Minikube URL: 
+   https://github.com/kubernetes/minikube
+   https://kubernetes.io/docs/getting-started-guides/minikube/
 
 So lets get the show on the road.
 
-minikube start
+```
+$ minikube start
+```
+Now start kubectl without any parameters:
 
-now start kubectl without any parameters:
-
+```
 kubectl
-
+```
 You see there are a lot of commands we can pass to kubectl.
 Not all of them will be covered in this workshop.
 I hope to give you a good start understanding of the basics so you can explore the others in your own time.
+
+
+
 
 Lets start with the get command.
 
