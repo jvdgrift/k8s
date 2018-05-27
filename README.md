@@ -91,8 +91,12 @@ $ kubectl get po
 ```
 As you can see you can use the singular, plural or alias to indicate a resource.
 
-
-
-
+A get command can also output different formats:
+```
+$ kubectl get pods -o wide
+$ kubectl get pods -o yaml
+$ kubectl get pods -o json
+```
+The later two output a lot of details about the specific resource. Ignore it or have a look. We'll get to the details later on...
 
 
