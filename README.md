@@ -62,7 +62,7 @@ If you issue a get command without any extra parameters then you get a list of a
 ```
 $ kubernetes get
 ```
-Just as the commands there are also a lot of resources. You are gonna see a few of them in this workshop. The others I'll leave up to you to explore.
+Just as all the commands, there are also a lot of resources. You are gonna see a few of them in this workshop. The others I'll leave up to you to explore.
 
 To see a resource(s) that is/are running on kubernetes you can issue a kubectl 'get' <resource>
 There is an 'all' resource with list all resources (as one would expect from a resource with was named 'all').
@@ -82,6 +82,15 @@ Run kubectl get all again and see what it did exactly.
 $ kubectl get all
 ```
 As you can see it did not just create a pod as you might have expected but it als created a deployment and replicaset.
+
+To view only a single type of resource we can pass it as a parameter to the get command. As you may have noticed when listing all the resources there are also aliases for certain resources. If for example we just want to see the pods try the following 3 ways:
+```
+$ kubectl get pod
+$ kubectl get pods
+$ kubectl get po
+```
+As you can see you can use the singular, plural or alias to indicate a resource.
+
 
 
 
