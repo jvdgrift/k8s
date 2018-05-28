@@ -133,13 +133,27 @@ $ kubectl explain pods
 ```
 Try a few others as well (remember 'kubectl get' lists all the available resources).
 
+
+### port-forward command
+
+So how do we connect to the pod? We could also use a port-forward to a specific pod. This is sometimes helpful for debug/troubleshooting. (use kubectl get pods to get the name of the pod)
+````
+kubectl port-forward pod/<name> 8081:8080
+````
+This will make the echoserver available at http://localhost:8081
+
+Use control+c to quit port forwarding.
+
+As you may have noticed this will make the pod only available to yourself. So how do we make the pod publicly available?
+
+
 ### expose command
 
 So we have deployed our echoserver but how do we connect to it? This can be done with the expose command. 
 ```
 $ kubectl expose deployment hello-minikube --type=NodePort
 ```
-The expose command created a service for the echoserver so it is reachable. 
+The expose command created a service for the echoserver so it is reachable. A service is an abstraction that groups one or more of the same pods behind one stable address (internally or externally). Requests are directed to a pod on a round robin basis by default.
 
 There are 4 types of exposure possible: 
 * ClusterIP: service IP is only accessable from within the cluster,
@@ -165,10 +179,45 @@ $ kubectl logs deployment/hello-minikube
 You can also use '--follow' to see a real time stream of the logs and use a '--tail x' to see the last x lines of the log.
 
 
-#146
+So now onwards to the cool features!
+
+### scale command
+
+When there is a lot of traffic hitting your application you want to scale up. Use kubectl to tell the deployment it requires 4 pods:
+```
+kubectl scale deploy/hello-minikube --replicas=4
+```
+If you check with the get command you'll see that kubernetes made 3 other pods available.
+
+
+### delete command
+
+With the delete command we can delete resources from the cluster. But this are not always as they appear... retrieve the name of a pod with the get command and issue a delete:
+```
+kubectl delete pod/<name>
+```
+And do another get pods. So there are only 3 pods left now right? Wrong! When we scaled up to 4 pods we instructed kubernetes to have 4 replicas up and running. The replica set noticed one was terminated and started another pod all by itself. You can also see this in the Events: part when you do a describe on the replica set.
+
+
+### set command
+
+The set command is used to set some property of a resource. We are gonna use the set command to trigger a rolling update by updating the echoservers image to version 1.4. To see it in action, open an other terminal and start a watch command (brew install watch) or use kubectl itself to watch a resource:
+```
+watch -n 1 kubectl get pods
+```
+or
+```
+kubectl get pods -w
+```
+
+Now to start the rolling update:
+```
+kubectl set image deployment/hello-minikube hello-minikube=k8s.gcr.io/echoserver:1.4
+```
+Did you see how kubernetes rolled out new versioned pods, waited for them to become up and running, then terminated some old pods and started new pods, repeat until all new required pods are up and running. 
 
 
 
-### edit command
 
-With edit you can make changes to resources. Lets say we want to update the echoservice to version 1.4.
+## Suggested further reading:
+* Service : https://kubernetes.io/docs/concepts/services-networking/service/
