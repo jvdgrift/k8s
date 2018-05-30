@@ -214,9 +214,50 @@ Now to start the rolling update:
 ```
 kubectl set image deployment/hello-minikube hello-minikube=k8s.gcr.io/echoserver:1.4
 ```
-Did you see how kubernetes rolled out new versioned pods, waited for them to become up and running, then terminated some old pods and started new pods, repeat until all new required pods are up and running. 
+Did you see how kubernetes rolled out new versioned pods, waited for them to become up and running, then terminated some old pods and started new pods, repeat until all new required pods are up and running. Down scaling is just as easy as up: just set a lower number of replicas and kubernetes will automatically terminate some pods for you. 
 
 
+### autoscale command
+
+So wouldn't it be nice if this could be done automatically? Scale up when there is more traffic and scale down when there is less traffic. That would be something... actually that would be something called Horizontal Pod Autoscaler (HPA).
+
+First scale down to 1 replica:
+```
+kubectl scale deploy/hello-minikube --replicas=1
+```
+
+For the autoscale to work on minikube we need to enable the metrics addons:
+```
+minikube addons enable metrics-server
+```
+
+We also need to tell our deployment how much cpu it wants. 
+```
+kubectl set resources deploy/hello-minikube --requests=cpu=100m --limits=cpu=200m
+```
+The unit of CPU resources is millicores, which is 1⁄1000 of one core. With one core being equal to 1 vCPU on a supported cloud provider. So the deployment now requests 10% of the cpu core and is limited to 20% of the cpu core.
+
+Now to set up the autoscale: 
+```
+kubectl autoscale deploy/hello-minikube --cpu-percent=5 --min=1 --max=4
+```
+This will automatically trigger the auto scaling when the cpu utilisation of all pods in the deployment is above the threshold of 5%. In order for it to kick in we need to create some requests. You can use apache bench (ab) for that. 
+
+Open the watch command again in a different terminal to see the auto scaling in action!
+```
+watch -n 1 kubectl get hpa
+```
+And in an other one:
+```
+watch -n 1 kubectl get pods
+```
+
+Now to fire off the requests and generate some load:
+```
+ab -n 500000 $(minikube service hello-minikube --url)
+```
+
+After a while you see a change and kubernetes will automatically scale up the pods. And after a while (when ab has finished) it will downscale again (10 minutes or something).
 
 
 ## Suggested further reading:
