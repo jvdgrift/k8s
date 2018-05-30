@@ -264,6 +264,7 @@ minikube dashboard
 ## ...now what?
 
 Already finished and still have appetite for something more? Then try to build your own application and load it up in minikube. This might be a good starting point: http://www.baeldung.com/spring-boot-minikube
+Try out a new version of the application by doing a canary release: https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#canary-deployments
 Set up a database: https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/
 
 Or something more lighter, try this 'management summary': https://cloud.google.com/kubernetes-engine/kubernetes-comic/
