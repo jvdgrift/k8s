@@ -26,12 +26,6 @@ $ minikube stop
 See you thursday!
 
 
-Kubernetes URL: 
-* https://kubernetes.io/
-
-Minikube URL: 
-* https://github.com/kubernetes/minikube
-* https://kubernetes.io/docs/getting-started-guides/minikube/
 
 ## Exploring kubernetes with minikube
 
@@ -257,8 +251,34 @@ Now to fire off the requests and generate some load:
 ab -n 500000 $(minikube service hello-minikube --url)
 ```
 
-After a while you see a change and kubernetes will automatically scale up the pods. And after a while (when ab has finished) it will downscale again (10 minutes or something).
+After a while you see a change and kubernetes will automatically scale up the pods. And after a while, when ab has finished, it will automatically downscale again. This could take 10 minutes or something.
 
+
+### dashboard
+
+One last thing... if your not much of a CLI-man then kubernetes also has a nice dashboard (now he tells me)... fire it up and take a look around. Most of the things kubectl can do, can also be done in the dashboard.
+```
+minikube dashboard
+```
+
+## ...now what?
+
+Already finished and still have appetite for something more? Then try to build your own application and load it up in minikube. This might be a good starting point: http://www.baeldung.com/spring-boot-minikube
+Set up a database: https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/
+
+Or something more lighter, try this 'management summary': https://cloud.google.com/kubernetes-engine/kubernetes-comic/
 
 ## Suggested further reading:
-* Service : https://kubernetes.io/docs/concepts/services-networking/service/
+
+There is a lot of ground not covered because there is a lot of ground to cover. But I hope I gave you a nice tour of the basics so you can go ahead and play with all the other resources yourself. The documentation on the kubernetes website has a lot of information and example, so that is a good starting point. It is not always clear but that is where google comes in handy ;-).
+
+* Kubernetes: 
+* https://kubernetes.io/docs
+
+Minikube: 
+* https://github.com/kubernetes/minikube
+* https://kubernetes.io/docs/getting-started-guides/minikube/
+
+There are also loads of instructional video's to be found on youtube from Cloud Native Computing Foundation:
+* https://www.youtube.com/channel/UCvqbFHwN-nwalWPjPUKpvTA/featured
+
