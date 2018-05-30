@@ -272,13 +272,13 @@ Or something more lighter, try this 'management summary': https://cloud.google.c
 
 There is a lot of ground not covered because there is a lot of ground to cover. But I hope I gave you a nice tour of the basics so you can go ahead and play with all the other resources yourself. The documentation on the kubernetes website has a lot of information and example, so that is a good starting point. It is not always clear but that is where google comes in handy ;-).
 
-* Kubernetes: 
+Kubernetes: 
 * https://kubernetes.io/docs
 
 Minikube: 
 * https://github.com/kubernetes/minikube
 * https://kubernetes.io/docs/getting-started-guides/minikube/
 
-There are also loads of instructional video's to be found on youtube from Cloud Native Computing Foundation:
+There are also loads of instructional video's to be found on youtube from Cloud Native Computing Foundation, also from KubeCon EU 2018:
 * https://www.youtube.com/channel/UCvqbFHwN-nwalWPjPUKpvTA/featured
 
