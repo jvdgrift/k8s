@@ -123,7 +123,7 @@ It explains the resource... try it out for the pod.
 ```
 kubectl explain pods
 ```
-Try a few others as well (remember 'kubectl get' lists all the available resources).
+Try a few others as well (remember 'kubectl get'?).
 
 
 ### port-forward command
