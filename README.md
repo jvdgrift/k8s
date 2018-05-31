@@ -277,6 +277,9 @@ Or something more lighter, try this 'management summary': https://cloud.google.c
 
 There is a lot of ground not covered because there is a lot of ground to cover. But I hope I gave you a nice tour of the basics so you can go ahead and explore all the other resources yourself. The documentation on the kubernetes website has a lot of information and example, so that is a good starting point. It is not always clear but that is where google comes in handy ;-).
 
+kubectl cheat sheet:
+* https://kubernetes.io/docs/reference/kubectl/cheatsheet
+
 Kubernetes: 
 * https://kubernetes.io/docs
 
