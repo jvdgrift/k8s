@@ -3,9 +3,11 @@
 
 This workshop will use a localhost kubernetes environment called 'minikube', an ideal starting point in getting to know kubernetes.
 
+
 ## Installation:
 
 I only tried it on a macbook pro without any problems. Linux and windows user have to try and get it installed themselves.
+
 
 ### MacOS:
 Install the following (using brew):
@@ -54,7 +56,7 @@ kubernetes get
 Just as all the commands, there are also a lot of resources. You are gonna see a few of them in this workshop. The others I'll leave up to you to explore.
 
 To see a resource(s) that is/are running on kubernetes you can issue a kubectl 'get' <resource>
-There is an 'all' resource with list all resources (as one would expect from a resource with was named 'all').
+There is an 'all' resource which list a lot of resources which you can interact with using kubectl.
 ```
 kubectl get all
 ```
