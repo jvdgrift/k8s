@@ -49,14 +49,13 @@ I hope to give you a good start understanding of the basics so you can explore t
 
 Lets start with the get command.
 
-If you issue a get command without any extra parameters then you get a list of all resources available to kubernetes.
+If you issue a get command without any extra parameters then you get a list of resources which you can interact with using kubectl.
 ```
 kubernetes get
 ```
 Just as all the commands, there are also a lot of resources. You are gonna see a few of them in this workshop. The others I'll leave up to you to explore.
 
 To see a resource(s) that is/are running on kubernetes you can issue a kubectl 'get' <resource>
-There is an 'all' resource which list a lot of resources which you can interact with using kubectl.
 ```
 kubectl get all
 ```
