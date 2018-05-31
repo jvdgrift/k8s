@@ -27,7 +27,7 @@ brew cask install minikube
 
 So lets get the show on the road.
 ```
-$ minikube start
+minikube start
 ```
 This will start minikube locally.
 
@@ -36,7 +36,7 @@ This will start minikube locally.
 
 Now start kubectl without any parameters:
 ```
-$ kubectl
+kubectl
 ```
 You see there are a lot of commands we can pass to kubectl.
 Not all of them will be covered in this workshop.
@@ -49,37 +49,37 @@ Lets start with the get command.
 
 If you issue a get command without any extra parameters then you get a list of all resources available to kubernetes.
 ```
-$ kubernetes get
+kubernetes get
 ```
 Just as all the commands, there are also a lot of resources. You are gonna see a few of them in this workshop. The others I'll leave up to you to explore.
 
 To see a resource(s) that is/are running on kubernetes you can issue a kubectl 'get' <resource>
 There is an 'all' resource with list all resources (as one would expect from a resource with was named 'all').
 ```
-$ kubectl get all
+kubectl get all
 ```
 As you can see there are no pods currently running on minikube. Only a special service called kubernetes. This is the kubernetes API that is exposed and kubectl uses it to issue commands to the cluster.
 
 I hear you think right now "But where is the master running?". You are correct... it is running but it is hidden from us by a namespace. 
 ```
-$ kubectl get namespaces
+kubectl get namespaces
 ```
 The default namespace is the default namespace and all the master resources are running under kube-system. (Side note: The kube-public namespace is used when bootstrapping the cluster by kubeadm).
 
 To see what is hidden behind a namespace just pass it along your command:
 ```
-$ kubectl get all --namespace kube-system
+kubectl get all --namespace kube-system
 ```
 
 Not lets install an example application called 'echoserver'.
 ```
-$ kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.3 --port=8080
+kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.3 --port=8080
 ```
 This will start a single instance of echoservice and let the container expose port 8080.
 
 Run kubectl get all again and see what it did exactly.
 ```
-$ kubectl get all
+kubectl get all
 ```
 As you can see it created a deployment, replica set and a pod. To be more specific: the deployment created the replica set and the replica set created the pod. You can see this pattern in the 'Controlled By:' field in the get of these resources.
 
