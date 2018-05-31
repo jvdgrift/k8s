@@ -51,7 +51,7 @@ Lets start with the get command.
 
 If you issue a get command without any extra parameters then you get a list of resources which you can interact with using kubectl.
 ```
-kubernetes get
+kubectl get
 ```
 Just as all the commands, there are also a lot of resources. You are gonna see a few of them in this workshop. The others I'll leave up to you to explore.
 
