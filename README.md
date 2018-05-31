@@ -4,27 +4,23 @@
 This workshop will use a localhost kubernetes environment called 'minikube', an ideal starting point in getting to know kubernetes.
 
 ## Installation:
-MacOS:
+
+I only tried it on a macbook pro without any problems. Linux and windows user have to try and get it installed themselves.
+
+### MacOS:
 Install the following (using brew):
 ```
-$ brew cask install docker
-$ brew install kubectl
-$ brew cask install virtualbox
-$ brew cask install minikube
+brew cask install docker
+brew install kubectl
+brew cask install virtualbox
+brew cask install minikube
 ```
-Linux/Windows:
 
-
-After install run minikube to download an image:
-```
-$ minikube start
-```
-After download has finished:
-```
-$ minikube stop
-```
-See you thursday!
-
+### Linux/Windows:
+- Docker: https://www.docker.com/community-edition
+- kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl/
+- VirtualBox: https://www.virtualbox.org/wiki/Downloads
+- minikube: https://github.com/kubernetes/minikube
 
 
 ## Exploring kubernetes with minikube
@@ -36,8 +32,6 @@ $ minikube start
 This will start minikube locally.
 
 
-
-
 ### kubectl
 
 Now start kubectl without any parameters:
@@ -47,6 +41,7 @@ $ kubectl
 You see there are a lot of commands we can pass to kubectl.
 Not all of them will be covered in this workshop.
 I hope to give you a good start understanding of the basics so you can explore the others in your own time.
+
 
 ### get command
 
@@ -69,7 +64,7 @@ I hear you think right now "But where is the master running?". You are correct..
 ```
 $ kubectl get namespaces
 ```
-The default namespace is the default namespace and all the master resources are running under kube-system. (Side note: The kube-public namespace is (was?) used when bootstrapping the cluster by kubeadm).
+The default namespace is the default namespace and all the master resources are running under kube-system. (Side note: The kube-public namespace is used when bootstrapping the cluster by kubeadm).
 
 To see what is hidden behind a namespace just pass it along your command:
 ```
@@ -90,40 +85,42 @@ As you can see it created a deployment, replica set and a pod. To be more specif
 
 To view only a single type of resource we can pass it as a parameter to the get command. As you may have noticed when listing all the resources there are also aliases for certain resources. If for example we just want to see the pods try the following 3 ways:
 ```
-$ kubectl get pod
-$ kubectl get pods
-$ kubectl get po
+kubectl get pod
+kubectl get pods
+kubectl get po
 ```
 As you can see you can use the singular, plural or alias to indicate a resource.
 
 A get command can also output different formats:
 ```
-$ kubectl get pods -o wide
-$ kubectl get pods -o yaml
-$ kubectl get pods -o json
+kubectl get pods -o wide
+kubectl get pods -o yaml
+kubectl get pods -o json
 ```
-The later two output a lot of details (the specifications or specs in short) about the resource. Ignore it or have a look. We'll get to the details later on...
+The later two output a lot of details (the specifications or specs in short) about the resource. Have a look. 
+
 
 ### describe command
 
 If you want to see the current state of a resource (for troubleshooting purposes), you can use the describe command.
 You can get the details as follows:
 ```
-$ kubectl describe <resource>/<name> 
+kubectl describe <resource>/<name> 
 ```
 or
 ```
-$ kubectl describe <resource> <name>
+kubectl describe <resource> <name>
 ```
 Leaving out the name will list all resources.
 
 Use kubectl to get the pods names (currently only one available) and use it to describe that specific pod.
 
+
 ### explain command
 
 It explains the resource... try it out for the pod.
 ```
-$ kubectl explain pods
+kubectl explain pods
 ```
 Try a few others as well (remember 'kubectl get' lists all the available resources).
 
@@ -145,7 +142,7 @@ As you may have noticed this will make the pod only available to yourself. So ho
 
 So we have deployed our echoserver but how do we connect to it? This can be done with the expose command. 
 ```
-$ kubectl expose deployment hello-minikube --type=NodePort
+kubectl expose deployment hello-minikube --type=NodePort
 ```
 The expose command created a service for the echoserver so it is reachable. A service is an abstraction that groups one or more of the same pods behind one stable address (internally or externally). Requests are directed to a pod on a round robin basis by default.
 
@@ -162,18 +159,16 @@ minikube service hello-minikube
 Passing '--url' as extra parameter we can retrieve only the URL.
 
 
-
-
 ### logs command
 
 Logs can be viewed with this command. 
 ```
-$ kubectl logs deployment/hello-minikube
+kubectl logs deployment/hello-minikube
 ```
 You can also use '--follow' to see a real time stream of the logs and use a '--tail x' to see the last x lines of the log.
 
-
 So now onwards to the cool features!
+
 
 ### scale command
 
