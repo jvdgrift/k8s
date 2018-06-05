@@ -244,7 +244,7 @@ watch -n 1 kubectl get pods
 
 Now to fire off the requests and generate some load:
 ```
-ab -n 500000 $(minikube service hello-minikube --url)
+ab -n 500000 $(minikube service hello-minikube --url)/
 ```
 
 After a while you see a change and kubernetes will automatically scale up the pods. And after a while, when ab has finished, it will automatically downscale again. This could take 10 minutes or something.
